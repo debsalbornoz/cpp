@@ -1,5 +1,23 @@
 #include "Phonebook.hpp"
+void    Contact::create_contact()
+{
+    get_first_name();
+    get_last_name();
+    get_nickname();
+    get_phone_nbr();
+    get_darkest_secret();
+    std::cout << "Contact '" << first_name << " " << last_name << "' has been saved successfully! :)";
 
+}
+
+Contact::Contact()
+{
+    first_name = "";
+    last_name = "";
+    nickname = "";
+    phone_number = "";
+    darkest_secret = "";
+}
 
 bool is_not_digits(std::string phone_nbr)
 {
@@ -11,12 +29,12 @@ bool is_not_digits(std::string phone_nbr)
 
 void Contact::get_first_name()
 {
-    std::string name;
+    std::string name = "";
 
     while (true)
     {
         std::cout << "Enter your first name: ";
-        std::getline(std::cin, name);
+        std::cin >> name;
 
         size_t start = name.find_first_not_of(" \t");
         size_t end = name.find_last_not_of(" \t");
@@ -42,7 +60,7 @@ void Contact::get_last_name()
     while(true)
     {
         std::cout << "Enter your last name: ";
-        std::getline(std::cin, lastname);
+        std::cin >> lastname;
         start = lastname.find_first_not_of(" \t");
         end = lastname.find_last_not_of(" \t");
         if (start != std::string::npos && end != std::string::npos)
@@ -66,7 +84,7 @@ void Contact::get_nickname()
     while(true)
     {
         std::cout << "Enter your nickname: ";
-        std::getline(std::cin, Nickname);
+        std::cin >> Nickname;
         start = Nickname.find_first_not_of(" \t");
         end = Nickname.find_last_not_of(" \t");
         if (start != std::string::npos && end != std::string::npos)
@@ -90,7 +108,7 @@ void Contact::get_phone_nbr()
     while(true)
     {
         std::cout << "Enter your phone number: ";
-        std::getline(std::cin, phone_nbr);
+        std::cin >> phone_nbr;
         start = phone_nbr.find_first_not_of(" \t");
         end = phone_nbr.find_last_not_of(" \t");
         if (start != std::string::npos && end != std::string::npos)
@@ -118,8 +136,8 @@ void Contact::get_darkest_secret()
 
     while(true)
     {
-        std::cout << "Enter your secret: ";
-        std::getline(std::cin, secret);
+        std::cout << "Enter your darkest secret: ";
+        std::cin >> secret;
         start = secret.find_first_not_of(" \t");
         end = secret.find_last_not_of(" \t");
         if (start != std::string::npos && end != std::string::npos)

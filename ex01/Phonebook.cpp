@@ -17,13 +17,25 @@ void    Contact::display()
 
 int main(void)
 {
-    Contact contact;
+    Contact     contact;
+    std::string    action = "";
 
-    contact.get_first_name();
-    contact.get_last_name();
-    contact.get_nickname();
-    contact.get_phone_nbr();
-    contact.get_darkest_secret();
-    contact.display();
+    std::cout << "Welcome to my phonebook!\n";
+    while (1)
+    {   
+        std::cout << "Select : ADD, SEARCH, EXIT\n";
+        std::cin >> action;
+        if (action == "ADD")
+        {
+            contact.create_contact();
+            contact.display();
+        }
+        else if (action == "SEARCH")
+            std::cout << "teste";
+        else if (action == "EXIT")
+            break;
+        else
+            std::cout << "Please select: ADD, SEARCH OR EXIT\n";
+    }
     return (0);
 }

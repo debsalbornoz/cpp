@@ -10,11 +10,13 @@ class Contact
         std::string phone_number;
         std::string darkest_secret;
     public:
-        void get_first_name();
-        void get_last_name();
-        void get_nickname();
-        void get_phone_nbr();
-        void get_darkest_secret();        
+        Contact();
+        void    create_contact();
+        void    get_first_name();
+        void    get_last_name();
+        void    get_nickname();
+        void    get_phone_nbr();
+        void    get_darkest_secret();        
         void    display();
 };
 
