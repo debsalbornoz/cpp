@@ -1,7 +1,7 @@
 #include "Phonebook.hpp"
 #include "Contact.hpp"
 
-Contact Contact::save_contact(void)
+void Contact::save_contact(void)
 {
     std::cout << "Name : \n";
     std::getline(std::cin, name);
@@ -13,7 +13,6 @@ Contact Contact::save_contact(void)
     std::getline(std::cin, phone_number);
     std::cout << "Darkest secret : \n";
     std::getline(std::cin, darkest_secret);
-    return *this;
 }
 
 void Contact::display_contact()

@@ -11,7 +11,9 @@ class   Phonebook
         Contact my_contacts[8];
         int     counter;
     public:
-        Phonebook   add_contact();
+        Phonebook() : counter(0) {}
+        void add_contact();
+        void display_contacts();
 };
 
 #endif
