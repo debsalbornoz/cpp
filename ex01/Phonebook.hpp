@@ -5,15 +5,16 @@
 #include <iostream>
 #include "Contact.hpp"
 
-class   Phonebook
+class   PhoneBook
 {
     public:
         Contact my_contacts[8];
         int     counter;
     public:
-        Phonebook() : counter(0) {}
+        PhoneBook() : counter(0) {}
         void add_contact();
         void display_contacts();
+        void search_contact();
 };
 
 #endif

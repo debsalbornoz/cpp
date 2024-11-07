@@ -11,6 +11,8 @@ class Contact
         std::string phone_number;
         std::string darkest_secret;
     public:
+        int index;
+        Contact() : index(0) {}
         void save_contact();
         void display_contact();
 };
