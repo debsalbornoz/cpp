@@ -4,6 +4,8 @@
 
 #include <iostream>
 #include "Contact.hpp"
+#include <cstdlib>
+#include <cwchar>
 
 class	PhoneBook
 {

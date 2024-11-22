@@ -1,6 +1,6 @@
 CFLAGS := -g3 -Wall -Wextra -Werror -std=c++98
 EXEC := phonebook
-SRCS := Phonebook.cpp Contact.cpp
+SRCS := Phonebook.cpp Contact.cpp Add.cpp Search.cpp
 OBJS := $(SRCS:.cpp=.o)
 
 all: $(EXEC)
