@@ -14,7 +14,8 @@ int main(void)
 		if (action == "ADD")
 		{
 			my_phonebook.add_contact();
-			my_phonebook.len++;
+			if (my_phonebook.len <= 7)
+				my_phonebook.len++;
 		}
 		else if (action == "SEARCH")
 		{

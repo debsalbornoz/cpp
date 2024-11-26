@@ -6,7 +6,7 @@ void PhoneBook::search_contact()
 	int j = 1;
 	std::string contact = "";
 	std::cout << "index  | first name | last name  | nickname    | phone number | darkest secret " << "\n";
-	for (int i = 0; i < len; i++)
+	for (int i = 0; i < len ; i++)
 	{
 		std::cout << "   " << j << "   | " << my_contacts[i].get_name() << " | " << my_contacts[i].get_last_name();
 		std::cout << " | " << my_contacts[i].get_nickname() << " | " << my_contacts[i].get_phone();
