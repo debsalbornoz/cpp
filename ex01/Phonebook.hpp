@@ -6,6 +6,7 @@
 #include "Contact.hpp"
 #include <cstdlib>
 #include <cwchar>
+#include <iomanip>
 
 class	PhoneBook
 {
@@ -19,6 +20,7 @@ class	PhoneBook
 		void display_contacts();
 		void search_contact();
 		void select_contact();
+		void print_contact(std::string str);
 };
 
 #endif

@@ -11,6 +11,8 @@ int main(void)
 	{
 		std::cout << "SELECT: ADD, SEARCH, EXIT" << "\n";
 		std::getline(std::cin, action);
+		if (std::cin.eof())
+			return (-1);
 		if (action == "ADD")
 		{
 			my_phonebook.add_contact();

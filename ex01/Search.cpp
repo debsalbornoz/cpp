@@ -1,19 +1,28 @@
 #include "Phonebook.hpp"
 #include "Contact.hpp"
 
+void PhoneBook::print_contact(std::string str)
+{
+	if (str.length() > 10)
+		std::cout << str.substr(0, 9) << ".|";
+	else
+		std::cout << std::setw(10) << str << "|";
+}
+
 void PhoneBook::search_contact()
 {
 	int j = 1;
 	std::string contact = "";
-	std::cout << "index  | first name | last name  | nickname    | phone number | darkest secret " << "\n";
+	std::cout << "     Index| First Name| Last Name| Nickname|" << "\n";
 	for (int i = 0; i < len ; i++)
 	{
-		std::cout << "   " << j << "   | " << my_contacts[i].get_name() << " | " << my_contacts[i].get_last_name();
-		std::cout << " | " << my_contacts[i].get_nickname() << " | " << my_contacts[i].get_phone();
-		std::cout << " | " << my_contacts[i].get_secret() << "\n";
+		std::cout << "         " << j << "|";
+		print_contact(my_contacts[i].get_name());
+		print_contact(my_contacts[i].get_last_name());
+		print_contact(my_contacts[i].get_nickname());
+		std::cout << "\n";
 		j++;
 	}
-
 }
 
 int is_number(std::string str)
