@@ -32,8 +32,10 @@ void PhoneBook::select_contact()
 {
 	std::string index = "";
 	int		value;
-	std::cout << "Welcome to the contact viewer! \n Please enter the index of the contact you want to view: ";
+	std::cout << "Welcome to the contact viewer! \n Please enter the index of the contact you want to view(or type 'EXIT' to return to the menu): ";
 	std::getline(std::cin, index);
+	if (index == "EXIT")
+		return;
 	while (!is_number(index))
 	{
 		std::cout << "Invalid input! Please enter the index of the contact you want to view (or type 'EXIT' to return to the menu): ";

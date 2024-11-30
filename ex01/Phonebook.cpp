@@ -25,7 +25,6 @@ int main(void)
 		else if (action == "EXIT")
 			break;
 	}
-	my_phonebook.display_contacts();
 	return(0);
 }
 
