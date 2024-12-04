@@ -21,6 +21,7 @@ class	PhoneBook
 		void search_contact();
 		void select_contact();
 		void print_contact(std::string str);
+		std::string get_input(std::string str);
 };
 
 #endif

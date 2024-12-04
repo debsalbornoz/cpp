@@ -1,6 +1,20 @@
 #include "Phonebook.hpp"
 #include "Contact.hpp"
 
+std::string get_input(std::string str)
+{
+	std::string input;
+
+	while (input == "")
+	{
+		std::cout << str;
+		std::getline(std::cin, input);
+		if (std::cin.eof())
+			return(NULL);
+	}
+	return (input);
+}
+
 void PhoneBook::add_contact()
 {
 	if (counter > 7)
@@ -17,40 +31,10 @@ void Contact::save_contact(void)
 	phone_number = "";
 	darkest_secret = "";
 
-	while (name == "")
-	{
-		std::cout << "Name : \n";
-		std::getline(std::cin, name);
-		if (std::cin.eof())
-			return;
-	}
-	while(last_name == "")
-	{
-		std::cout << "Last name : \n";
-		std::getline(std::cin, last_name);
-		if (std::cin.eof())
-			return;
-	}
-	while(nickname == "")
-	{
-		std::cout << "Nickname : \n";
-		std::getline(std::cin, nickname);
-		if (std::cin.eof())
-			return;
-	}
-	while (phone_number == "")
-	{
-		std::cout << "Phone number : \n";
-		std::getline(std::cin, phone_number);
-		if (std::cin.eof())
-			return;
-	}
-	while(darkest_secret == "")
-	{
-		std::cout << "Darkest secret : \n";
-		std::getline(std::cin, darkest_secret);
-		if (std::cin.eof())
-			return;
-	}
+	name = get_input("Name : ");
+	last_name = get_input("Last name : ");
+	nickname = get_input("Nickname : ");
+	phone_number = get_input("Phone_number : ");
+	darkest_secret = get_input("Darkest secret : ");
 	index++;
 }
