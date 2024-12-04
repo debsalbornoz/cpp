@@ -21,6 +21,7 @@ class Contact
 		std::string get_secret();
 		void save_contact();
 		void display_contact();
+		void initialize_contact();
 };
 
 #endif
