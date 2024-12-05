@@ -1,0 +1,16 @@
+{
+    "version": "0.2.0",
+    "configurations": [
+        {
+            "type": "lldb",
+            "request": "launch",
+            "name": "Debug",
+            "program": "${workspaceFolder}/ex01/phonebook",  // Caminho do executável
+            "args": [],
+            "cwd": "${workspaceFolder}/ex01",  // Diretório de trabalho do programa
+            "preLaunchTask": "C/C++: g++-10 build active file",  // Nome da tarefa de compilação
+            "stopAtEntry": false,
+            "externalConsole": false
+        }
+    ]
+}
