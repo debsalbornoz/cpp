@@ -13,8 +13,11 @@ int main(int argc, char **argv)
         duplicate_and_replace(file, file_replace, argv[2], argv[3]);
         file.close();
         file_replace.close();
-    } else {
+    }
+    else
+    {
         std::cerr << "Error: wrong number of arguments" << std::endl;
+        return (1);
     }
     return 0;
 }
