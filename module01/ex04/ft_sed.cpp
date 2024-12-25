@@ -13,7 +13,7 @@ void create_new_file(const std::string &filename, std::ofstream &file_replace)
 {
     file_replace.open((filename + ".replace").c_str());
     if (!file_replace.is_open()) {
-        std::cerr << "Error: file not found\n";
+        std::cerr << "Error\n";
         exit(1);
     }
 }
