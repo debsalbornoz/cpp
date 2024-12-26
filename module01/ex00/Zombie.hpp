@@ -6,7 +6,7 @@
 /*   By: dlamark- <dlamark-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/09 16:21:02 by dlamark-          #+#    #+#             */
-/*   Updated: 2024/12/09 19:37:01 by dlamark-         ###   ########.fr       */
+/*   Updated: 2024/12/26 14:55:20 by dlamark-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,6 +25,7 @@ class Zombie
 		void announce(void);
 };
 
-Zombie* newZombie( std::string name );
+Zombie *newZombie( std::string name );
+void	randomChump(std::string name);
 
 #endif

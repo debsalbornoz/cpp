@@ -18,5 +18,5 @@ void Zombie::setName(std::string zombie_name)
 
 void Zombie::setIndex(int i)
 {
-    index = i + 1;
+	index = i + 1;
 }
