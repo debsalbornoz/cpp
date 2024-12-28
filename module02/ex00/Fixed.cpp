@@ -10,11 +10,10 @@ Fixed::~Fixed()
 	std::cout << "Destructor called\n";
 }
 
-Fixed::Fixed(const Fixed &new_object)
-{
-	fixedNumber = new_object.fixedNumber;
-	std::cout << "Copy constructor called\n"; 
+Fixed::Fixed(const Fixed &new_object) : fixedNumber(new_object.fixedNumber) {
+	std::cout << "Copy constructor called\n";
 }
+
 
 Fixed& Fixed::operator=(const Fixed& other)
 {
@@ -26,4 +25,16 @@ Fixed& Fixed::operator=(const Fixed& other)
 	}
 
 	return (*this);
+}
+
+int Fixed::getRawBits( void ) const
+{
+	std::cout << "getRawBits member function called\n";
+	return (fixedNumber);
+}
+
+void Fixed::setRawBits( int const raw )
+{
+	
+	fixedNumber = raw;
 }

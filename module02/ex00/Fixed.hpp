@@ -13,8 +13,8 @@ class Fixed
 		~Fixed();
 		Fixed(const Fixed &new_object);
 		Fixed &operator = (const Fixed &new_object);
-		//int getRawBits( void ) const;
-		//void setRawBits( int const raw );
+		int getRawBits( void ) const;
+		void setRawBits( int const raw );
 };
 
 #endif
