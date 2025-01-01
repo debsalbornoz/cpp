@@ -1,7 +1,5 @@
 #include "ClapTrap.hpp"
 
-
-
 void repair(ClapTrap &a, ClapTrap &b)
 {
     std::string amount = "";

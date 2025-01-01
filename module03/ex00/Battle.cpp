@@ -38,7 +38,6 @@ void battle(ClapTrap &a, ClapTrap &b)
                 std::cout << RED << "ClapTrap " << a.getName() << " has no energy" << std::endl << RESET;
                 return;
             }
-            std::cout << "chega aqui?\n";
             std::cout << a.get_energy_points() << std::endl;
             a.get_attack_damage(damage);
             a.attack(b.getName());
