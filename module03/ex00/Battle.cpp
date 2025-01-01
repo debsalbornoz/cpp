@@ -22,12 +22,24 @@ void battle(ClapTrap &a, ClapTrap &b)
 
         if (claptrap == a.getName() && a.get_hit_points() > 0)
         {
+            if (b.get_energy_points() < 0)
+            {
+                std::cout << RED << "ClapTrap " << b.getName() << " has no energy" << std::endl << RESET;
+                return;
+            }
             b.get_attack_damage(damage);
             b.attack(a.getName());
             a.takeDamage(damage);
         }
-        else if (claptrap == b.getName() and b.get_hit_points() > 0)
+        else if (claptrap == b.getName() && b.get_hit_points() > 0 )
         {
+            if (a.get_energy_points() <= 0)
+            {
+                std::cout << RED << "ClapTrap " << a.getName() << " has no energy" << std::endl << RESET;
+                return;
+            }
+            std::cout << "chega aqui?\n";
+            std::cout << a.get_energy_points() << std::endl;
             a.get_attack_damage(damage);
             a.attack(b.getName());
             b.takeDamage(damage);
