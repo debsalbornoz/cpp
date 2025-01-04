@@ -19,9 +19,9 @@ void startCombat(ClapTrap &a, ClapTrap &b)
 		unsigned int damage = 0;
 		std::istringstream(amount) >> damage;
 		if (target == a.getName() && b.get_hit_points() > 0)
-			a.performAttack(a, b, damage);
+			b.performAttack(a, b, damage);
 		else if (target == b.getName() && a.get_hit_points() > 0 )
-			b.performAttack(b,a, damage);
+			a.performAttack(b,a, damage);
 	}
 }
 
