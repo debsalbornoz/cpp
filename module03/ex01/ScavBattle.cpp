@@ -28,20 +28,23 @@ void battle(ScavTrap &a, ScavTrap &b)
     }
 }
 
-void ScavTrap::ScavBattle(ScavTrap &a, ScavTrap &b)
+void ScavTrap::ScavBattle(ScavTrap &attacker, ScavTrap &target)
 {
-    if (a.get_energy_points() <= 0)
+    if (attacker.get_energy_points() <= 0)
     {
-        std::cout << RED << "ScavTrap " << a.getName() << " has no energy" << std::endl << RESET;
+        std::cout << RED << "ScavTrap " << attacker.getName() << " has no energy" << std::endl << RESET;
         return;
     }
     else
-        a.attack(b.getName());
-    if (b.get_hit_points() <= 0)
+        attacker.attack(target.getName());
+    if (target.get_hit_points() <= 0)
         std::cout << RED << "ScavTrap " << name << " is dead" << std::endl << RESET;
     else
     {
-        std::cout << YELLOW << "ScavTrap " << name << " takes " << a.get_damage() << " points of damage" << std::endl << RESET;
-        b.takeDamage(a.get_damage());
+        target.takeDamage(attacker.get_damage());
+        if (target.get_hit_points() <= 0)
+            std::cout << RED << "ScavTrap " << name << " is dead" << std::endl << RESET;
+        else
+            std::cout << YELLOW << "ScavTrap " << name << " takes " << attacker.get_damage() << " points of damage" << std::endl << RESET;
     }
 }
