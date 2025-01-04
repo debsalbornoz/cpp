@@ -26,16 +26,23 @@ void startCombat(ClapTrap &a, ClapTrap &b)
 }
 
 
-void ClapTrap::performAttack(ClapTrap &a, ClapTrap &b, int damage)
+void ClapTrap::performAttack(ClapTrap &target, ClapTrap &attacker, int damage)
 {
-	if (b.get_energy_points() < 0)
+	if (attacker.get_energy_points() < 0)
 	{
-		std::cout << RED << "ClapTrap " << b.getName() << " has no energy" << std::endl << RESET;
+		std::cout << RED << "ClapTrap " << attacker.getName() << " has no energy" << std::endl << RESET;
 			return;
 	}
-	b.get_damage(damage);
-	b.attack(a.getName());
-	a.takeDamage(damage);
+	attacker.get_damage(damage);
+	if (attacker.get_energy_points() > 0)
+	{
+		attacker.attack(target.getName());
+		target.takeDamage(damage);
+	}
+	else if (attacker.get_hit_points() <= 0)
+		std::cout << RED <<"ClapTrap " << attacker.getName() << " can't attack because it is dead" << std::endl << RESET;
+	else if (attacker.get_energy_points() <= 0)
+		std::cout << PURPLE <<"ClapTrap " << attacker.getName() << " has no energy" << std::endl << RESET;
 }
 
 void ClapTrap::get_damage(unsigned int amount)
@@ -44,16 +51,13 @@ void ClapTrap::get_damage(unsigned int amount)
 }
 void ClapTrap::attack(const std::string& target)
 {
-	if (hit_points <= 0)
-		std::cout << RED <<"ClapTrap " << name << " can't attack because it is dead" << std::endl << RESET;
+	
 	if (energy_points > 0 && hit_points > 0)
 	{
 		energy_points -=1;
 		std::cout << GREEN << "ClapTrap " << name << " atacks " << target;
 		std::cout << ",causing " << attack_damage << " points of damage!" << std::endl << RESET;
 	}
-	else if (energy_points <= 0)
-		std::cout << PURPLE <<"ClapTrap " << name << " has no energy" << std::endl << RESET;
 }
 
 void ClapTrap::takeDamage(unsigned int amount)
