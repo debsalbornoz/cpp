@@ -1,0 +1,34 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   Main.cpp                                           :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: debs <debs@student.42.fr>                  +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2025/04/27 15:51:49 by debs              #+#    #+#             */
+/*   Updated: 2025/05/04 18:32:06 by debs             ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
+#include "Bureaucrat.hpp"
+#include "Form.hpp"
+
+
+int main(void)
+{
+    std::string name = "Debora";
+    int grade = 75;
+        Bureaucrat b(name, grade);
+        Form f1 = Form("ShrubberyCreationForm", 145, 137);
+        Form f2 = Form("RobotomyRequestForm", 72, 45);
+        Form f3 = Form("PresidentialPardonForm", 25, 5);
+
+        f1.beSigned(b);
+        f2.beSigned(b);
+        f3.beSigned(b);
+        
+        std::cout << f1 << std::endl;
+        std::cout << f2 << std::endl;
+        std::cout << f3 << std::endl;
+    return (0);       
+}
