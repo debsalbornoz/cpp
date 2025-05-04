@@ -6,16 +6,22 @@
 /*   By: debs <debs@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/23 18:45:31 by debs              #+#    #+#             */
-/*   Updated: 2025/05/03 18:59:48 by debs             ###   ########.fr       */
+/*   Updated: 2025/05/04 10:54:12 by debs             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef BUREAUCRAT_HPP
 # define BUREAUCRAT_HPP
 
+#define RED     "\033[31m"
+#define GREEN   "\033[32m"
+#define RESET   "\033[0m"
+#define PURPLE    "\033[34m"
+
 #include <string>
 #include <exception>
 #include <iostream>
+#include <cstdlib>
 
 class Bureaucrat
 {
@@ -30,6 +36,7 @@ class Bureaucrat
         Bureaucrat &operator=(const Bureaucrat &copy);
         std::string getName() const;
         int getGrade() const;
+        void setGrade(int grade);
         void incrementGrade();
         void decrementGrade();
         class GradeTooHighException : public std::exception
@@ -49,5 +56,11 @@ class Bureaucrat
                 }
         };
 };
+
+std::ostream& operator<<(std::ostream& out, const Bureaucrat& b);
+bool isNumber(std::string str);
+int insertGrade();
+void runMenu(Bureaucrat &b);
+void displayMenu();
 
 #endif
