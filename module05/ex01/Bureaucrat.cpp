@@ -6,7 +6,7 @@
 /*   By: debs <debs@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/23 18:45:22 by debs              #+#    #+#             */
-/*   Updated: 2025/05/04 18:23:47 by debs             ###   ########.fr       */
+/*   Updated: 2025/05/05 09:05:09 by debs             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -170,17 +170,16 @@ void runMenu(Bureaucrat &b)
     
 }
 
-void Bureaucrat::signForm(Form &f)
+bool Bureaucrat::signForm(Form &f)
 {
-    if (this->grade < 1)
-        throw Bureaucrat::GradeTooHighException();
-    if (this->grade > 150)
-        throw Bureaucrat::GradeTooLowException();
-    if (this->grade > f.getSignGrade())
+    if (this->grade < 1 || this->grade > 150 || this->grade > f.getSignGrade())
     {
-        std::cout << RED << this->getName();
-        std::cout << " cannot sign form " << f.getName();
-        std::cout << " because grade is too low" << std::endl << RESET;
-        throw Bureaucrat::GradeTooLowException();
+        std::cout << RED << this->getName() + " couldnt sign " + f.getName() + " because grade is too low" << std::endl << RESET;
+        return (false);
+    }
+    else
+    {
+        std::cout << GREEN << this->getName() + " signed " + f.getName() << std::endl << RESET;
+        return (true);
     }
 }

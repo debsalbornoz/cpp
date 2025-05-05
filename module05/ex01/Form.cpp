@@ -6,7 +6,7 @@
 /*   By: debs <debs@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/04 11:29:03 by debs              #+#    #+#             */
-/*   Updated: 2025/05/04 18:32:27 by debs             ###   ########.fr       */
+/*   Updated: 2025/05/05 09:06:32 by debs             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -71,24 +71,12 @@ void Form::beSigned(Bureaucrat &bureaucrat)
 {
     try
     {
-        bureaucrat.signForm(*this);
+        if (!bureaucrat.signForm(*this))
+            throw Form::GradeTooLowException();
         this->signedStatus = true;
-        std::cout << GREEN << bureaucrat.getName() << " signed " << this->getName() << std::endl << RESET;
-    }
-    catch(const std::exception& e)
-    {
-        std::cerr << RED << e.what() <<  std::endl << RESET;
-    }
-}
-
-void Form::Sign(Bureaucrat &bureaucrat, Form &f)
-{
-    try
-    {
-        f.beSigned(bureaucrat);
-        std::cout << PURPLE << f << std::endl << RESET;
-    } catch(const std::exception& e) {
-        std::cerr << RED << e.what() <<  std::endl << RESET;
+    } catch (const std::exception &e) {
+        std::cout << RED << e.what() << std::endl << RESET;
+        return;
     }
 }
 

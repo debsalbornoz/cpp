@@ -6,7 +6,7 @@
 /*   By: debs <debs@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/23 18:45:31 by debs              #+#    #+#             */
-/*   Updated: 2025/05/04 16:36:03 by debs             ###   ########.fr       */
+/*   Updated: 2025/05/05 09:08:59 by debs             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,6 +17,7 @@
 #define GREEN   "\033[32m"
 #define RESET   "\033[0m"
 #define PURPLE    "\033[34m"
+#define MAGENTA "\033[35m"
 
 #include <string>
 #include <exception>
@@ -41,7 +42,7 @@ class Bureaucrat
         void setGrade(int grade);
         void incrementGrade();
         void decrementGrade();
-        void signForm(Form &form);
+        bool signForm(Form &form);
         class GradeTooHighException : public std::exception
         {
             public:
