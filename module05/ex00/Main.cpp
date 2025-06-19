@@ -6,29 +6,49 @@
 /*   By: dlamark- <dlamark-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/27 15:51:49 by debs              #+#    #+#             */
-/*   Updated: 2025/06/19 17:34:36 by dlamark-         ###   ########.fr       */
+/*   Updated: 2025/06/19 18:09:47 by dlamark-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "Bureaucrat.hpp"
-#include "Menu.hpp"
 
-int main(void)
-{
-	std::string name;
-	int grade;
-	Menu menu;
-	
-	std::cout << PURPLE <<"Insert name:" << std::endl << RESET;
-	std::cin >> name;
-	std::cin.ignore();
-	grade = menu.insertGrade();
-	try{
-		Bureaucrat b(name, grade);
-		menu.runMenu(b);
-	} catch (const std::exception &e) {
-		std::cout << RED << e.what() << std::endl << RESET;
-		return (-1);
+int main() {
+	try {
+		Bureaucrat b1("Alice", 2);
+		std::cout << b1 << std::endl;
+
+		b1.incrementGrade();
+		std::cout << "After increment: " << b1 << std::endl;
 	}
-	return (0);
+	catch (std::exception& e) {
+		std::cerr << RED <<  e.what() << std::endl << RESET;
+	}
+
+	try {
+		Bureaucrat b2("Bob", 149);
+		std::cout << b2 << std::endl;
+
+		b2.decrementGrade();
+		std::cout << "After decrement: " << b2 << std::endl;
+
+		b2.decrementGrade();
+	}
+	catch (std::exception& e) {
+		std::cerr << RED << e.what() << std::endl << RESET;
+	}
+	try {
+		Bureaucrat b3("Charlie", 0);
+	}
+	catch (std::exception& e) {
+		std::cerr << RED << e.what() << std::endl << RESET;
+	}
+
+	try {
+		Bureaucrat b4("Dave", 151);
+	}
+	catch (std::exception& e) {
+		std::cerr << RED << e.what() << std::endl << RESET;
+	}
+
+	return 0;
 }
