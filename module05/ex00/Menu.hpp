@@ -1,34 +1,27 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   Main.cpp                                           :+:      :+:    :+:   */
+/*   Menu.hpp                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: dlamark- <dlamark-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/04/27 15:51:49 by debs              #+#    #+#             */
-/*   Updated: 2025/06/19 17:34:36 by dlamark-         ###   ########.fr       */
+/*   Created: 2025/06/19 17:29:26 by dlamark-          #+#    #+#             */
+/*   Updated: 2025/06/19 17:33:44 by dlamark-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "Bureaucrat.hpp"
-#include "Menu.hpp"
+#ifndef MENU_HPP
+#define MENU_HPP
 
-int main(void)
-{
-	std::string name;
-	int grade;
-	Menu menu;
-	
-	std::cout << PURPLE <<"Insert name:" << std::endl << RESET;
-	std::cin >> name;
-	std::cin.ignore();
-	grade = menu.insertGrade();
-	try{
-		Bureaucrat b(name, grade);
-		menu.runMenu(b);
-	} catch (const std::exception &e) {
-		std::cout << RED << e.what() << std::endl << RESET;
-		return (-1);
-	}
-	return (0);
-}
+#include <iostream>
+#include "Bureaucrat.hpp"
+
+class Menu{
+	public:
+		void runMenu(Bureaucrat &b);
+		void displayMenu();
+		int insertGrade();
+		bool isNumber(std::string str);
+};
+
+#endif

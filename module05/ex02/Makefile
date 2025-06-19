@@ -1,6 +1,6 @@
 CFLAGS := -g3 -Wall -Wextra -Werror -std=c++98
-EXEC := bureaucrat
-SRCS := Main.cpp Bureaucrat.cpp Menu.cpp
+EXEC := form
+SRCS := Main.cpp Bureaucrat.cpp Form.cpp
 OBJS := $(SRCS:.cpp=.o)
 
 all: $(EXEC)
