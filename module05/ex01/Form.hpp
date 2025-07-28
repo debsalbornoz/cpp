@@ -6,7 +6,7 @@
 /*   By: debs <debs@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/04 10:58:56 by debs              #+#    #+#             */
-/*   Updated: 2025/05/05 09:04:49 by debs             ###   ########.fr       */
+/*   Updated: 2025/07/27 20:43:00 by debs             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,6 +36,7 @@ class Form
         bool getSignedStatus() const;
         void beSigned(Bureaucrat &bureaucrat);
         void Sign(Bureaucrat &bureaucrat, Form &f);
+        void checkGrade(int signGrade, int execGrade);
 
     class GradeTooHighException : public std::exception{
         public:

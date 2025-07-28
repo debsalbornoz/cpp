@@ -6,13 +6,13 @@
 /*   By: debs <debs@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/04 11:29:03 by debs              #+#    #+#             */
-/*   Updated: 2025/05/05 09:06:32 by debs             ###   ########.fr       */
+/*   Updated: 2025/07/27 20:51:18 by debs             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "Form.hpp"
 
-Form::Form(void) : name("random name"), signedStatus(false), signGrade(150), execGrade(150)
+Form::Form(void) : name("default"), signedStatus(false), signGrade(150), execGrade(150)
 {
     std::cout << "Form default constructor called" << std::endl;
 }
@@ -20,16 +20,27 @@ Form::Form(void) : name("random name"), signedStatus(false), signGrade(150), exe
 Form::Form(std::string name, int signGrade, int execGrade) : name(name), signGrade(signGrade), execGrade(execGrade)
 {
     this->signedStatus = false;
+    try
+    {
+        checkGrade(signGrade, execGrade);
+    }
+    catch (const std::exception &e) {
+        std::cout << RED << e.what() << std::endl << RESET;
+        return;
+    }
+    std::cout << "Form " << this->name << " constructor called" << std::endl;
+}
+
+void Form::checkGrade(int signGrade, int execGrade)
+{
     if (signGrade < 1 || execGrade < 1)
         throw Form::GradeTooHighException();
     if (signGrade > 150 || execGrade > 150)
-        throw Form::GradeTooLowException();
-    std::cout << "Form constructor called" << std::endl;
+        throw Form::GradeTooLowException();    
 }
-
 Form::~Form(void)
 {
-    std::cout << "Form destructor called" << std::endl;
+    std::cout << "Form " << this->name << " destructor called" << std::endl;
 }   
 
 Form::Form(const Form &copy) : name(copy.name), signedStatus(copy.signedStatus), signGrade(copy.signGrade), execGrade(copy.execGrade)
@@ -69,15 +80,10 @@ bool Form::getSignedStatus() const
 
 void Form::beSigned(Bureaucrat &bureaucrat)
 {
-    try
-    {
-        if (!bureaucrat.signForm(*this))
+
+       if (bureaucrat.getGrade() > this->signGrade)
             throw Form::GradeTooLowException();
         this->signedStatus = true;
-    } catch (const std::exception &e) {
-        std::cout << RED << e.what() << std::endl << RESET;
-        return;
-    }
 }
 
 std::ostream& operator<<(std::ostream& out, const Form& form)
