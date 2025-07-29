@@ -1,94 +1,103 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   Form.cpp                                           :+:      :+:    :+:   */
+/*   AForm.cpp                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: debs <debs@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/04 11:29:03 by debs              #+#    #+#             */
-/*   Updated: 2025/05/05 09:06:32 by debs             ###   ########.fr       */
+/*   Updated: 2025/07/28 13:11:51 by debs             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "Form.hpp"
+#include "AForm.hpp"
 
-Form::Form(void) : name("random name"), signedStatus(false), signGrade(150), execGrade(150)
+AForm::AForm(void) : name("default"), signedStatus(false), signGrade(150), execGrade(150)
 {
-    std::cout << "Form default constructor called" << std::endl;
+    std::cout << "AForm default constructor called" << std::endl;
 }
 
-Form::Form(std::string name, int signGrade, int execGrade) : name(name), signGrade(signGrade), execGrade(execGrade)
+AForm::AForm(std::string name, int signGrade, int execGrade) : name(name), signGrade(signGrade), execGrade(execGrade)
 {
     this->signedStatus = false;
-    if (signGrade < 1 || execGrade < 1)
-        throw Form::GradeTooHighException();
-    if (signGrade > 150 || execGrade > 150)
-        throw Form::GradeTooLowException();
-    std::cout << "Form constructor called" << std::endl;
+    try
+    {
+        checkGrade(signGrade, execGrade);
+    }
+    catch (const std::exception &e) {
+        std::cout << RED << e.what() << std::endl << RESET;
+        return;
+    }
+    std::cout << "AForm " << this->name << " constructor called" << std::endl;
 }
 
-Form::~Form(void)
+void AForm::checkGrade(int signGrade, int execGrade)
 {
-    std::cout << "Form destructor called" << std::endl;
+    if (signGrade < 1 || execGrade < 1)
+        throw AForm::GradeTooHighException();
+    if (signGrade > 150 || execGrade > 150)
+        throw AForm::GradeTooLowException();    
+}
+AForm::~AForm(void)
+{
+    std::cout << "AForm " << this->name << " destructor called" << std::endl;
 }   
 
-Form::Form(const Form &copy) : name(copy.name), signedStatus(copy.signedStatus), signGrade(copy.signGrade), execGrade(copy.execGrade)
+AForm::AForm(const AForm &copy) : name(copy.name), signedStatus(copy.signedStatus), signGrade(copy.signGrade), execGrade(copy.execGrade)
 {
-    std::cout << "Form copy constructor called" << std::endl;
+    std::cout << "AForm copy constructor called" << std::endl;
 }
 
-Form &Form::operator=(const Form &copy)
+AForm &AForm::operator=(const AForm &copy)
 {
     if (this != &copy)
     {
         this->signedStatus = copy.signedStatus;
     }
-    std::cout << "Form assignment operator called" << std::endl;
+    std::cout << "AForm assignment operator called" << std::endl;
     return *this;
 }
 
-std::string Form::getName() const
+std::string AForm::getName() const
 {
     return (this->name);
 }
 
-int Form::getSignGrade() const
+int AForm::getSignGrade() const
 {
     return (this->signGrade);
 }
 
-int Form::getExecGrade() const
+int AForm::getExecGrade() const
 {
     return (this->execGrade);
 }
 
-bool Form::getSignedStatus() const
+bool AForm::getSignedStatus() const
 {
     return (this->signedStatus);
 }
 
-void Form::beSigned(Bureaucrat &bureaucrat)
+void AForm::beSigned(Bureaucrat &bureaucrat)
 {
-    try
-    {
-        if (!bureaucrat.signForm(*this))
-            throw Form::GradeTooLowException();
-        this->signedStatus = true;
-    } catch (const std::exception &e) {
-        std::cout << RED << e.what() << std::endl << RESET;
-        return;
-    }
-}
 
-std::ostream& operator<<(std::ostream& out, const Form& form)
+       if (bureaucrat.getGrade() > this->signGrade)
+            throw AForm::GradeTooLowException();
+        this->signedStatus = true;
+}
+void AForm::setTarget(std::string target)
+{
+    this->target = target;
+}
+std::ostream& operator<<(std::ostream& out, const AForm& AForm)
 {
     out << PURPLE << "Name: " << RESET;
-    out << form.getName() << std::endl;
+    out << AForm.getName() << std::endl;
     out << PURPLE << "Signed: "  << RESET;
-    out << form.getSignedStatus() << std::endl;
+    out << AForm.getSignedStatus() << std::endl;
     out << PURPLE << "Sign grade required: " << RESET;
-    out << form.getSignGrade() << std::endl;   
+    out << AForm.getSignGrade() << std::endl;   
     out << PURPLE <<"Exec grade required: " << RESET;
-    out << form.getExecGrade() << std::endl;
+    out << AForm.getExecGrade() << std::endl;
     return (out);
 }

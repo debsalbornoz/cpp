@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   AForm.hpp                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: dlamark- <dlamark-@student.42.fr>          +#+  +:+       +#+        */
+/*   By: debs <debs@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/04 10:58:56 by debs              #+#    #+#             */
-/*   Updated: 2025/06/19 17:23:56 by dlamark-         ###   ########.fr       */
+/*   Updated: 2025/07/28 13:11:26 by debs             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,10 +17,11 @@
 
 class Bureaucrat;
 
-Aclass Form
+class AForm
 {
     private:
         const std::string name;
+        const std::string target;
         bool signedStatus;
         const int signGrade;
         const int execGrade;
@@ -35,8 +36,9 @@ Aclass Form
         int getExecGrade() const;
         bool getSignedStatus() const;
         void beSigned(Bureaucrat &bureaucrat);
-        void Sign(Bureaucrat &bureaucrat, Form &f);
+        void checkGrade(int signGrade, int execGrade);
 		virtual void execute(Bureaucrat const & executor) = 0;
+        void setTarget(std::string target);
 
     class GradeTooHighException : public std::exception{
         public:
