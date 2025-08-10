@@ -6,7 +6,7 @@
 /*   By: debs <debs@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/04 11:29:03 by debs              #+#    #+#             */
-/*   Updated: 2025/07/28 13:11:51 by debs             ###   ########.fr       */
+/*   Updated: 2025/08/10 17:00:52 by debs             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -80,15 +80,11 @@ bool AForm::getSignedStatus() const
 
 void AForm::beSigned(Bureaucrat &bureaucrat)
 {
-
        if (bureaucrat.getGrade() > this->signGrade)
             throw AForm::GradeTooLowException();
         this->signedStatus = true;
 }
-void AForm::setTarget(std::string target)
-{
-    this->target = target;
-}
+
 std::ostream& operator<<(std::ostream& out, const AForm& AForm)
 {
     out << PURPLE << "Name: " << RESET;

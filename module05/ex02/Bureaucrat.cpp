@@ -6,7 +6,7 @@
 /*   By: debs <debs@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/23 18:45:22 by debs              #+#    #+#             */
-/*   Updated: 2025/07/28 09:04:04 by debs             ###   ########.fr       */
+/*   Updated: 2025/08/10 16:47:16 by debs             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -119,7 +119,7 @@ void Bureaucrat::setGrade(int grade)
 	this->grade = grade;
 }
 
-void Bureaucrat::signForm(Form &form)
+void Bureaucrat::signForm(AForm &form)
 {
     try {
         form.beSigned(*this);
@@ -129,7 +129,16 @@ void Bureaucrat::signForm(Form &form)
     }
     std::cout << GREEN << this->getName() << " signed " << form.getName() << std::endl << RESET;
 }
-
+void Bureaucrat::executeForm(AForm const & form) const
+{
+    try {
+        form.execute(*this);
+    } catch (const std::exception &e) {
+        std::cout << RED << this->getName() << " could not execute " << form.getName() << " because " << e.what() << std::endl << RESET;
+        return;
+    }
+    std::cout << GREEN << this->getName() << " executed " << form.getName() << std::endl << RESET;
+}
 /*
 Bureaucrat::Bureaucrat(): name("Bureaucrat"), grade(150)
 {

@@ -6,7 +6,7 @@
 /*   By: debs <debs@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/04 10:58:56 by debs              #+#    #+#             */
-/*   Updated: 2025/07/28 13:11:26 by debs             ###   ########.fr       */
+/*   Updated: 2025/08/10 17:01:05 by debs             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,19 +26,18 @@ class AForm
         const int signGrade;
         const int execGrade;
     public:
-        Form(void);
-        Form(std::string name, int signGrade, int execGrade);
-        Form(const Form &copy);
-        Form &operator=(const Form &copy);
-        ~Form(void);
+        AForm(void);
+        AForm(std::string name, int signGrade, int execGrade);
+        AForm(const AForm &copy);
+        AForm &operator=(const AForm &copy);
+        ~AForm(void);
         std::string getName() const;
         int getSignGrade() const;
         int getExecGrade() const;
         bool getSignedStatus() const;
         void beSigned(Bureaucrat &bureaucrat);
         void checkGrade(int signGrade, int execGrade);
-		virtual void execute(Bureaucrat const & executor) = 0;
-        void setTarget(std::string target);
+		virtual void execute(Bureaucrat const & executor) const = 0;
 
     class GradeTooHighException : public std::exception{
         public:
@@ -58,6 +57,6 @@ class AForm
 
 };
 
-std::ostream& operator<<(std::ostream& out, const Form& form);
+std::ostream& operator<<(std::ostream& out, const AForm& form);
 
 #endif

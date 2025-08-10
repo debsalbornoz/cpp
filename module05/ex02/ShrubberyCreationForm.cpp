@@ -6,24 +6,25 @@
 /*   By: debs <debs@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/28 12:58:19 by debs              #+#    #+#             */
-/*   Updated: 2025/07/28 13:22:26 by debs             ###   ########.fr       */
+/*   Updated: 2025/08/10 17:25:11 by debs             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ShrubberyCreationForm.hpp"
 
-ShrubberyCreationForm::ShrubberyCreationForm(void) : AForm("ShrubberyCreationForm", 145, 137) {
-    this->setTarget("default");
+ShrubberyCreationForm::ShrubberyCreationForm(void) : AForm("ShrubberyCreationForm", 145, 137), target("default") {
     std::cout << "ShrubberyCreationForm default constructor called" << std::endl;
 }
 
-ShrubberyCreationForm::ShrubberyCreationForm(std::string target) : AForm("ShrubberyCreationForm", 145, 137) 
+ShrubberyCreationForm::ShrubberyCreationForm(std::string target) : AForm("ShrubberyCreationForm", 145, 137) , target(target)
 {
     std::cout << "ShrubberyCreationForm constructor called" << std::endl;
-    this->setTarget(target);
 }
 
-ShrubberyCreationForm::ShrubberyCreationForm(ShrubberyCreationForm const & src) : AForm(src) {}
+ShrubberyCreationForm::ShrubberyCreationForm(ShrubberyCreationForm const & src) : AForm(src) {
+    *this = src;
+    std::cout << "ShrubberyCreationForm copy constructor called" << std::endl;  
+}
 
 ShrubberyCreationForm::~ShrubberyCreationForm(void) {
     std::cout << "ShrubberyCreationForm destructor called" << std::endl;
@@ -31,34 +32,31 @@ ShrubberyCreationForm::~ShrubberyCreationForm(void) {
 
 ShrubberyCreationForm & ShrubberyCreationForm::operator=(ShrubberyCreationForm const & rhs) {
     AForm::operator=(rhs);
+    this->target = rhs.target;
     return (*this);
 }
 
 void ShrubberyCreationForm::execute(Bureaucrat const & executor) const {
-        if (!this->getSignedStatus())
-            throw AForm::FormNotSignedException();
-        if (executor.getGrade() > this->getExecGrade())
+        if ( !this->getSignedStatus() || executor.getGrade() > this->getExecGrade())
             throw AForm::GradeTooLowException();
         createShrubbery();
 }
 
-void ShrubberyCreationForm::createShrubbery()
-{
-    std::ofstream file(this->getTarget() + "_shrubbery");
-    if (!file.is_open()) {
-        throw std::runtime_error("Error opening file");
+void ShrubberyCreationForm::createShrubbery() const {
+    std::ofstream file((this->target + "_shrubbery").c_str());
+    if (!file) {
+        std::cerr << "Failed to open file for writing." << std::endl;
+        return;
     }
-
-    file << "        *\n";
-    file << "       /_\\\n";
-    file << "      /___\\\n";
-    file << "     /_____\\\n";
-    file << "    /_______\\\n";
-    file << "   /_________\\\n";
-    file << "  /___________\\\n";
-    file << "       |||\n";
-    file << "       |||\n";
-    file << "  ****************\n";
+    file << "       _-_\n";
+    file << "    /~~   ~~\\\n";
+    file << " /~~         ~~\\\n";
+    file << "{               }\n";
+    file << " \\  _-     -_  /\n";
+    file << "   ~  \\\\ //  ~\n";
+    file << "_- -   | | _- _\n";
+    file << "  _ -  | |   -_\n";
+    file << "       | |\n";
 
     file.close();
 }

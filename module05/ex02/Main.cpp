@@ -6,31 +6,46 @@
 /*   By: debs <debs@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/27 15:51:49 by debs              #+#    #+#             */
-/*   Updated: 2025/05/05 09:12:09 by debs             ###   ########.fr       */
+/*   Updated: 2025/08/10 17:50:50 by debs             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "Bureaucrat.hpp"
-#include "Form.hpp"
+#include "ShrubberyCreationForm.hpp"
+#include "RobotomyRequestForm.hpp"
+#include "PresidentialPardonForm.hpp"
 
+int main() {
+        Bureaucrat lowRank("Bob", 150);
+        Bureaucrat midRank("Alice", 50);
+        Bureaucrat highRank("Zaphod", 1);
 
-int main(void)
-{
-    std::string name = "Debora";
-    int grade = 75;
-        Bureaucrat b(name, grade);
-        Form f1 = Form("ShrubberyCreationForm", 145, 137);
-        Form f2 = Form("RobotomyRequestForm", 72, 45);
-        Form f3 = Form("PresidentialPardonForm", 25, 5);
+        std::cout << "\n---- Creating Forms ----" << std::endl;
+        ShrubberyCreationForm shrubForm("garden");
+        RobotomyRequestForm robotForm("Marvin");
+        PresidentialPardonForm pardonForm("Ford");
 
-        std::cout << MAGENTA <<"\nBureaucrat informatiom: " << std::endl << RESET;
-        std::cout << MAGENTA << b << std::endl;
-        f1.beSigned(b);
-        std::cout << f1 << std::endl;
-        f2.beSigned(b);
-        std::cout << f2 << std::endl;
-        f3.beSigned(b);
-        std::cout << f3 << std::endl;
+        std::cout << "\n---- Trying to Execute Unsigned Forms ----" << std::endl;
+        lowRank.executeForm(shrubForm);
+
+        std::cout << "\n---- Signing Forms ----" << std::endl;
+        lowRank.signForm(shrubForm);
+        midRank.signForm(shrubForm);
+        midRank.signForm(robotForm);
+        highRank.signForm(pardonForm);
+        highRank.signForm(robotForm);
         
-    return (0);       
+        std::cout << "\n---- Executing Forms ----" << std::endl;
+        lowRank.executeForm(shrubForm);
+        midRank.executeForm(shrubForm);
+
+        std::cout << "\n---- Executing Robotomy Multiple Times ----" << std::endl;
+        for (int i = 0; i < 4; ++i) {
+            highRank.executeForm(robotForm);
+        }
+
+        std::cout << "\n---- Executing Presidential Pardon ----" << std::endl;
+        highRank.executeForm(pardonForm);
+        std::cout << std::endl;
+    return 0;
 }
