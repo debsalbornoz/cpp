@@ -6,23 +6,11 @@
 /*   By: debs <debs@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/27 15:51:49 by debs              #+#    #+#             */
-/*   Updated: 2025/08/11 14:35:05 by debs             ###   ########.fr       */
+/*   Updated: 2025/08/11 16:27:05 by debs             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "Bureaucrat.hpp"
-
-
-
-#include <iostream>
-#include <string>
-#include "Bureaucrat.hpp"
-
-#define RED "\033[31m"
-#define RESET "\033[0m"
-
-// Função auxiliar para tentar criar um Bureaucrat
-
 
 int main() {
 

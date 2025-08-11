@@ -6,14 +6,13 @@
 /*   By: debs <debs@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/23 18:45:31 by debs              #+#    #+#             */
-/*   Updated: 2025/08/11 13:49:40 by debs             ###   ########.fr       */
+/*   Updated: 2025/08/11 16:27:25 by debs             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef BUREAUCRAT_HPP
 # define BUREAUCRAT_HPP
 
-#include <string>
 #include <exception>
 #include <iostream>
 #include <cstdlib>
