@@ -6,25 +6,57 @@
 /*   By: debs <debs@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/27 15:51:49 by debs              #+#    #+#             */
-/*   Updated: 2025/07/27 20:14:04 by debs             ###   ########.fr       */
+/*   Updated: 2025/08/11 14:35:05 by debs             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "Bureaucrat.hpp"
 
+
+
+#include <iostream>
+#include <string>
+#include "Bureaucrat.hpp"
+
+#define RED "\033[31m"
+#define RESET "\033[0m"
+
+// Função auxiliar para tentar criar um Bureaucrat
+
+
 int main() {
-		Bureaucrat b1("Alice", 2);
-		std::cout << b1;
-		b1.incrementGrade();
-		std::cout << b1;
 
-		Bureaucrat b2("Bob", 149);
-		std::cout << b2;
-		b2.decrementGrade();
-		std::cout << b2;
-		b2.decrementGrade();
+	std::cout << "\n---- Creating Bureaucrats ----" << std::endl;
+	Bureaucrat *a = createBureaucrat("Alice", 2);
+	Bureaucrat *b = createBureaucrat("Bob", 149);
+	Bureaucrat *c = createBureaucrat("Charlie", 0);
+	Bureaucrat *d = createBureaucrat("Dave", 151);
 
-		Bureaucrat b3("Charlie", 0);
-		Bureaucrat b4("Dave", 151);
+	std::cout << "\n---- Trying to Increment/Decrement Bureaucrat ----" << std::endl;
+	if (a != NULL)
+	{
+		a->incrementGrade();
+		a->incrementGrade();
+	}
+	if (b != NULL)
+		b->decrementGrade();
+	if (c != NULL)
+		c->decrementGrade();
+	if (d != NULL)
+		d->decrementGrade();
+
+	std::cout << "\n---- Bureaucrats after operations ----" << std::endl;
+	if (a != NULL)
+		std::cout << *a;
+	if (b != NULL)
+		std::cout << *b;
+	if (c != NULL)
+		std::cout << *c;
+
+	std::cout << "\n---- Deleting Bureaucrats ----" << std::endl;
+	deleteBureaucrat(a);
+	deleteBureaucrat(b);
+	deleteBureaucrat(c);
+	deleteBureaucrat(d);
 	return 0;
 }
