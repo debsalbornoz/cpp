@@ -6,7 +6,7 @@
 /*   By: debs <debs@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/04 10:58:56 by debs              #+#    #+#             */
-/*   Updated: 2025/07/27 20:43:00 by debs             ###   ########.fr       */
+/*   Updated: 2025/08/11 16:43:18 by debs             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,5 +57,7 @@ class Form
 };
 
 std::ostream& operator<<(std::ostream& out, const Form& form);
+Form *createForm(std::string name, int signGrade, int execGrade);
+void deleteForm(Form *form);
 
 #endif
