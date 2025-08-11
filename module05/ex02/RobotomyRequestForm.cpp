@@ -6,7 +6,7 @@
 /*   By: debs <debs@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/28 12:58:19 by debs              #+#    #+#             */
-/*   Updated: 2025/08/10 17:49:37 by debs             ###   ########.fr       */
+/*   Updated: 2025/08/11 17:45:35 by debs             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,7 +37,9 @@ RobotomyRequestForm & RobotomyRequestForm::operator=(RobotomyRequestForm const &
 }
 
 void RobotomyRequestForm::execute(Bureaucrat const & executor) const {
-        if (!this->getSignedStatus()|| executor.getGrade() > this->getExecGrade())
+        if (!this->getSignedStatus())
+            throw AForm::FormNotSignedException();
+        if (executor.getGrade() > this->getExecGrade())
             throw AForm::GradeTooLowException();
         std::cout << "BZZZZZZZZZZZZZ (drilling noises)" << std::endl;
         if (rand() % 2) {
