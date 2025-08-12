@@ -6,7 +6,7 @@
 /*   By: debs <debs@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/11 09:16:18 by debs              #+#    #+#             */
-/*   Updated: 2025/08/11 09:57:18 by debs             ###   ########.fr       */
+/*   Updated: 2025/08/12 09:11:58 by debs             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,20 +46,30 @@ AForm* Intern::makeShrubberyForm(std::string target) {
     return (new ShrubberyCreationForm(target));
 }
 
+typedef AForm* (*FormCreator)(std::string); // agora ponteiro para função normal
+
 AForm* Intern::makeForm(std::string name, std::string target) {
     std::string names[3] = {"robotomy request", "presidential pardon", "shrubbery creation"};
-    AForm *forms[3] = {makeRobotomyForm(target), makePardonForm(target), makeShrubberyForm(target)};
+    FormCreator creators[3] = {
+        &Intern::makeRobotomyForm,
+        &Intern::makePardonForm,
+        &Intern::makeShrubberyForm
+    };
 
-    for (int i = 0; i < 3; i++) {
+    for (int i = 0; i < 3; ++i) {
         if (names[i] == name) {
             std::cout << "Intern creates " << name << std::endl;
-            return (forms[i]);
+            return creators[i](target); // não precisa mais de `this`
         }
     }
+
     std::cout << "Intern could not find the form: " << name << std::endl;
-    return (NULL);
+    return NULL;
 }
 
-void Intern::deleteForm(AForm *form) {
+void Intern::deleteForm(AForm *&form) {
+    if (form == NULL)
+        return;
     delete form;
+    form = NULL;
 }

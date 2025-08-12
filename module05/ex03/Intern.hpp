@@ -6,7 +6,7 @@
 /*   By: debs <debs@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/11 08:56:16 by debs              #+#    #+#             */
-/*   Updated: 2025/08/11 09:58:44 by debs             ###   ########.fr       */
+/*   Updated: 2025/08/12 09:11:47 by debs             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,10 +23,10 @@ class Intern {
     Intern(Intern const & src);
     ~Intern(void);
     Intern& operator=(Intern const &rhs);
-    AForm* makePardonForm(std::string target);
-    AForm* makeRobotomyForm(std::string target);
-    AForm* makeShrubberyForm(std::string target);
+    static AForm* makePardonForm(std::string target);
+    static AForm* makeRobotomyForm(std::string target);
+    static AForm* makeShrubberyForm(std::string target);
     AForm *makeForm(std::string name, std::string target);
-    void deleteForm(AForm *form);
+    void deleteForm(AForm *&form);
 };
 #endif

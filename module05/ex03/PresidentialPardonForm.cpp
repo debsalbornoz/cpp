@@ -6,7 +6,7 @@
 /*   By: debs <debs@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/28 12:58:19 by debs              #+#    #+#             */
-/*   Updated: 2025/08/10 17:50:20 by debs             ###   ########.fr       */
+/*   Updated: 2025/08/11 17:47:25 by debs             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,9 +37,11 @@ PresidentialPardonForm & PresidentialPardonForm::operator=(PresidentialPardonFor
 }
 
 void PresidentialPardonForm::execute(Bureaucrat const & executor) const {
-        if ( !this->getSignedStatus() || executor.getGrade() > this->getExecGrade())
-            throw AForm::GradeTooLowException();
-        std::cout << this->target << " has been pardoned by Zafod Beeblebrox" << std::endl;
+    if (!this->getSignedStatus())
+        throw AForm::FormNotSignedException();
+    if (executor.getGrade() > this->getExecGrade())
+        throw AForm::GradeTooLowException();
+    std::cout << this->target << " has been pardoned by Zafod Beeblebrox" << std::endl;
 }
 
 std::ostream & operator<<(std::ostream & o, PresidentialPardonForm const & rhs)
